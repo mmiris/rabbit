@@ -7,7 +7,7 @@ module.exports = {
     'plugin:vue/vue3-essential',
     'eslint:recommended',
     '@vue/eslint-config-typescript',
-    '@vue/eslint-config-prettier',
+    '@vue/eslint-config-prettier'
   ],
   // 小程序全局变量
   globals: {
@@ -21,25 +21,25 @@ module.exports = {
     App: true,
     Page: true,
     Component: true,
-    AnyObject: true,
+    AnyObject: true
   },
   parserOptions: {
-    ecmaVersion: 'latest',
+    ecmaVersion: 'latest'
   },
   rules: {
     'prettier/prettier': [
-      'warn',
+      1,
       {
+        printWidth: 102,
         singleQuote: true,
+        trailingComma: 'none',
         semi: false,
-        printWidth: 100,
-        trailingComma: 'all',
-        endOfLine: 'auto',
-      },
+        arrowParens: 'always'
+      }
     ],
     'vue/multi-word-component-names': ['off'],
     'vue/no-setup-props-destructure': ['off'],
     'vue/no-deprecated-html-element-is': ['off'],
-    '@typescript-eslint/no-unused-vars': ['off'],
-  },
+    '@typescript-eslint/no-unused-vars': ['off']
+  }
 }

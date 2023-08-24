@@ -9,5 +9,24 @@
   "files.associations": {
     "pages.json": "jsonc", // pages.json 可以写注释
     "manifest.json": "jsonc" // manifest.json 可以写注释
-  }
+  },
+  "cSpell.words": [
+    "automator",
+    "autoscan",
+    "dcloudio",
+    "easycom",
+    "erabbit",
+    "kuaishou",
+    "miniapp",
+    "miniprogram",
+    "Parens",
+    "persistedstate",
+    "pinia",
+    "quickapp",
+    "rushstack",
+    "stacktracey",
+    "toutiao",
+    "Wechat",
+    "weixin"
+  ]
 }
