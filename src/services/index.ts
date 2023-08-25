@@ -1,12 +1,15 @@
 import useProfileStore from '@/stores/profile'
 
-const baseUrl = 'https://pcapi-xiaotuxian-front-devtest.itheima.net'
+const baseURL = 'https://pcapi-xiaotuxian-front-devtest.itheima.net'
 
 const interceptor = {
   invoke(options: UniApp.RequestOptions) {
-    if (options.url.startsWith('http')) {
-      options.url = baseUrl + options.url
+    if (!options.url.startsWith('http')) {
+      options.url = baseURL + options.url
+      console.log(options.url)
     }
+
+    options.timeout = 10000
 
     options.header = {
       ...options.header,
@@ -31,7 +34,7 @@ interface Data<T> {
 }
 
 const api = <T>(options: UniApp.RequestOptions) => {
-  new Promise<Data<T>>((resolve, reject) => {
+  return new Promise<Data<T>>((resolve, reject) => {
     uni.request({
       ...options,
       success(res) {
@@ -52,6 +55,8 @@ const api = <T>(options: UniApp.RequestOptions) => {
         }
       },
       fail(err) {
+        console.log('fail-----------')
+
         uni.showToast({
           icon: 'error',
           title: 'Internet error.'
