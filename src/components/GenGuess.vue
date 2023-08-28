@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 
 import { IPagination } from '@/types/global'
 import { IGuess } from '@/types/home'
@@ -8,13 +8,31 @@ import { getGuessesAPI } from '@/services/home'
 import { onMounted } from 'vue'
 
 const guesses = ref<IGuess[]>([])
+const pageParams: IPagination = reactive({
+  page: 1,
+  pageSize: 10
+})
+const isOver = ref(false)
 
-const getGuesses = async (pagination: IPagination) => {
-  const data = await getGuessesAPI(pagination)
-  guesses.value = data.result.items
+const getGuesses = async () => {
+  if (isOver.value) return
+
+  const data = await getGuessesAPI(pageParams)
+  guesses.value.push(...data.result.items)
+
+  pageParams.page++
+  isOver.value = pageParams.page > data.result.pages ? true : false
 }
 
-onMounted(() => getGuesses({ page: 1, pageSize: 10 }))
+const resetGuesses = () => {
+  pageParams.page = 1
+  guesses.value = []
+  isOver.value = false
+}
+
+onMounted(() => getGuesses())
+
+defineExpose({ getGuesses, resetGuesses })
 </script>
 
 <template>
@@ -37,7 +55,8 @@ onMounted(() => getGuesses({ page: 1, pageSize: 10 }))
       </view>
     </navigator>
   </view>
-  <view class="loading-text"> 正在加载... </view>
+  <view class="loading-text" v-if="isOver">页面已经完啦！你挑的嘛，偶像！！！ </view>
+  <view class="loading-text" v-else> 正在加载... </view>
 </template>
 
 <style lang="scss">
