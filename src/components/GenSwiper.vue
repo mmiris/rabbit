@@ -36,13 +36,9 @@ const changeHandler: UniHelper.SwiperOnChange = (e) => {
 </template>
 
 <style lang="scss">
-:host {
-  display: block;
-  height: 280rpx;
-}
 /* 轮播图 */
 .carousel {
-  height: 100%;
+  height: 280rpx;
   position: relative;
   overflow: hidden;
   transform: translateY(0);
@@ -72,4 +68,3 @@ const changeHandler: UniHelper.SwiperOnChange = (e) => {
   }
 }
 </style>
-@/types/home

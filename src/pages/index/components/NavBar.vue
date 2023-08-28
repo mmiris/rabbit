@@ -25,6 +25,7 @@ const { safeAreaInsets } = uni.getSystemInfoSync()
   position: relative;
   display: flex;
   flex-direction: column;
+  padding-top: 20px;
   .logo {
     display: flex;
     align-items: center;
