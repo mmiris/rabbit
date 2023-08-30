@@ -30,6 +30,6 @@ export const getGuessesAPI = (pagination?: IPagination) => {
   return api<IGuessResult<IGuess>>({
     method: 'GET',
     url: '/home/goods/guessLike',
-    data: { ...pagination }
+    data: pagination
   })
 }

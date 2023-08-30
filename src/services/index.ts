@@ -55,8 +55,6 @@ const api = <T>(options: UniApp.RequestOptions) => {
         }
       },
       fail(err) {
-        console.log('fail-----------')
-
         uni.showToast({
           icon: 'error',
           title: 'Internet error.'
