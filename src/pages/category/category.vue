@@ -15,9 +15,7 @@ const activeIdx = ref(0)
 
 const banners = ref<IBanner[]>([])
 const categories = ref<ICategory[]>([])
-const children = computed(
-  () => categories.value[activeIdx.value]?.children ?? []
-)
+const children = computed(() => categories.value[activeIdx.value]?.children ?? [])
 
 const getBanners = async (distributionSite = 2) => {
   const data = await getBannersAPI(distributionSite)
@@ -74,7 +72,7 @@ onLoad(async () => {
               :key="item.id"
               class="goods"
               hover-class="none"
-              :url="`/pages/goods/goods?id=${item.id}`"
+              :url="`/detail/detail/detail?id=${item.id}`"
             >
               <image class="image" :src="item.picture"></image>
               <view class="name ellipsis">{{ item.name }}</view>

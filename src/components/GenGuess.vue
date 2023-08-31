@@ -45,7 +45,7 @@ defineExpose({ getGuesses, resetGuesses })
       class="guess-item"
       v-for="item in guesses"
       :key="item.id"
-      :url="`/pages/goods/goods?id=${item.id}`"
+      :url="`/pages/detail/detail?id=${item.id}`"
     >
       <image class="image" mode="aspectFill" :src="item.picture"></image>
       <view class="name"> {{ item.name }} </view>

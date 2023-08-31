@@ -45,9 +45,7 @@ const hitBottomHandler = async () => {
     subType: currSubType.id
   })
 
-  currSubType.goodsItems.items.push(
-    ...data.result.subTypes[activeIdx.value].goodsItems.items
-  )
+  currSubType.goodsItems.items.push(...data.result.subTypes[activeIdx.value].goodsItems.items)
 }
 
 onLoad(() => {
@@ -88,7 +86,7 @@ onLoad(() => {
           class="navigator"
           v-for="item in subType.goodsItems.items"
           :key="item.id"
-          :url="`/pages/goods/goods?id=${item.id}`"
+          :url="`/pages/detail/detail?id=${item.id}`"
         >
           <image class="thumb" :src="item.picture"></image>
           <view class="name ellipsis">{{ item.name }}</view>
