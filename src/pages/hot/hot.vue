@@ -45,7 +45,9 @@ const hitBottomHandler = async () => {
     subType: currSubType.id
   })
 
-  currSubType.goodsItems.items.push(...data.result.subTypes[activeIdx.value].goodsItems.items)
+  currSubType.goodsItems.items.push(
+    ...data.result.subTypes[activeIdx.value].goodsItems.items
+  )
 }
 
 onLoad(() => {

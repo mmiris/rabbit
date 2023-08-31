@@ -30,7 +30,7 @@ module.exports = {
     'prettier/prettier': [
       1,
       {
-        printWidth: 102,
+        printWidth: 80,
         singleQuote: true,
         trailingComma: 'none',
         semi: false,
