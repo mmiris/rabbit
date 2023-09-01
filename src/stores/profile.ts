@@ -1,12 +1,13 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import { IInfo } from '@/types/login'
 
 const useProfileStore = defineStore(
   'user',
   () => {
-    const profile = ref()
+    const profile = ref<IInfo>()
 
-    const setProfile = (val: any) => (profile.value = val)
+    const setProfile = (val: IInfo) => (profile.value = val)
     const clearProfile = () => (profile.value = undefined)
 
     return {

@@ -79,7 +79,7 @@ onLoad(async () => {
           <text class="number">{{ detail?.price }}</text>
         </view>
         <view class="name ellipsis">{{ detail?.name }} </view>
-        <view class="desc">{{ detail?.desc }}</view>
+        <view class="desc">{{ detail?.desc.replace('app', '') }}</view>
       </view>
 
       <!-- 操作面板 -->
