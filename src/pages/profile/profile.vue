@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import useProfileStore from '@/stores/profile'
+import useGuess from '@/hooks/useGuess'
 
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
@@ -13,20 +14,22 @@ const orderTypes = [
 ]
 
 const profileStore = useProfileStore()
+
+const { guessRef, onScrollToLower } = useGuess()
 </script>
 
 <template>
-  <scroll-view class="viewport" scroll-y enable-back-to-top>
+  <scroll-view class="viewport" scroll-y enable-back-to-top @scrolltolower="onScrollToLower">
     <!-- 个人资料 -->
     <view class="profile" :style="{ paddingTop: safeAreaInsets!.top + 'px' }">
       <!-- 情况1：已登录 -->
       <view class="overview" v-if="profileStore.profile">
-        <navigator url="/pagesMember/profile/profile" hover-class="none">
+        <navigator url="/sub-packages/profile/profile" hover-class="none">
           <image class="avatar" mode="aspectFill" :src="profileStore.profile.avatar"></image>
         </navigator>
         <view class="meta">
           <view class="nickname">{{ profileStore.profile.nickname }}</view>
-          <navigator class="extra" url="/pagesMember/profile/profile" hover-class="none">
+          <navigator class="extra" url="/sub-packages/profile/profile" hover-class="none">
             <text class="update">更新头像昵称</text>
           </navigator>
         </view>
@@ -49,7 +52,7 @@ const profileStore = useProfileStore()
           </view>
         </view>
       </view>
-      <navigator class="settings" url="/pagesMember/settings/settings" hover-class="none">
+      <navigator class="settings" url="/sub-packages/profile/settings" hover-class="none">
         设置
       </navigator>
     </view>
@@ -79,7 +82,7 @@ const profileStore = useProfileStore()
     </view>
     <!-- 猜你喜欢 -->
     <view class="guess">
-      <XtxGuess ref="guessRef" />
+      <gen-guess ref="guessRef" />
     </view>
   </scroll-view>
 </template>

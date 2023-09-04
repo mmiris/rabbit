@@ -7,17 +7,18 @@ import CategoryPanel from './components/CategoryPanel.vue'
 import HotPanel from './components/HotPanel.vue'
 import SkeletonView from './components/SkeletonView.vue'
 
-import { TGuessInstance } from '@/types/component'
 import { IBanner, ICategory, IHot } from '@/types/home'
 
 import { getBannersAPI, getCategoriesAPI, getHotsAPI } from '@/services/home'
+import useGuess from '@/hooks/useGuess'
 
 const banners = ref<IBanner[]>([])
 const categories = ref<ICategory[]>([])
 const hots = ref<IHot[]>([])
-const guessRef = ref<TGuessInstance>()
 const isRefreshing = ref(false)
 const isLoading = ref(true)
+
+const { guessRef, onScrollToLower } = useGuess()
 
 const getBanners = async () => {
   const data = await getBannersAPI()
@@ -41,10 +42,6 @@ const refreshHandler = async () => {
   isRefreshing.value = false
 }
 
-const hitBottomHandler = () => {
-  guessRef.value.getGuesses()
-}
-
 onLoad(async () => {
   await Promise.all([getBanners(), getCategories(), getHots()])
   isLoading.value = false
@@ -60,7 +57,7 @@ onLoad(async () => {
     enable-back-to-top
     refresher-enabled
     :refresher-triggered="isRefreshing"
-    @scrolltolower="hitBottomHandler"
+    @scrolltolower="onScrollToLower"
     @refresherrefresh="refreshHandler"
   >
     <gen-swiper :banners="banners" />
