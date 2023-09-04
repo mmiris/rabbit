@@ -10,11 +10,39 @@ import useProfileStore from '@/stores/profile'
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
 
+const profileStore = useProfileStore()
+
 const profile = ref({} as IProfile)
 
 const getProfile = async () => {
   const data = await getProfileAPI()
   profile.value = data.result
+}
+
+const uploadAvatar = async (filePath: string) => {
+  return await uni.uploadFile({
+    url: '/member/profile/avatar',
+    name: 'file',
+    filePath
+  })
+}
+
+const onAvatarChange = () => {
+  uni.chooseMedia({
+    mediaType: ['image'],
+    async success(res) {
+      try {
+        const data = await uploadAvatar(res.tempFiles[0].tempFilePath)
+        profile.value.avatar = profileStore.profile.avatar = JSON.parse(data.data).result.avatar
+      } catch (err) {
+        uni.showToast({
+          icon: 'error',
+          title: '上传失败！',
+          duration: 2000
+        })
+      }
+    }
+  })
 }
 
 const onGenderChange: UniHelper.RadioGroupOnChange = (ev) => {
@@ -44,7 +72,7 @@ const onSubmit = async () => {
   const { nickname, gender, birthday, profession } = profile.value
   const data = await putProfileAPI({ nickname, gender, birthday, profession, ...locationCode })
 
-  useProfileStore().profile.nickname = data.result.nickname
+  profileStore.profile.nickname = data.result.nickname
 
   uni.showToast({
     icon: 'success',
@@ -66,7 +94,7 @@ onLoad(() => {
     </view>
     <!-- 头像 -->
     <view class="avatar">
-      <view class="avatar-content">
+      <view class="avatar-content" @tap="onAvatarChange">
         <image class="image" :src="profile.avatar" mode="aspectFill" />
         <text class="text">点击修改头像</text>
       </view>

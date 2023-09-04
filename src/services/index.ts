@@ -26,6 +26,7 @@ const interceptor = {
 }
 
 uni.addInterceptor('request', interceptor)
+uni.addInterceptor('uploadFile', interceptor)
 
 interface Data<T> {
   code: number

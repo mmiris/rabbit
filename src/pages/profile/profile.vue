@@ -24,12 +24,12 @@ const { guessRef, onScrollToLower } = useGuess()
     <view class="profile" :style="{ paddingTop: safeAreaInsets!.top + 'px' }">
       <!-- 情况1：已登录 -->
       <view class="overview" v-if="profileStore.profile">
-        <navigator url="/sub-packages/profile/profile" hover-class="none">
+        <navigator url="/packages/profile/profile" hover-class="none">
           <image class="avatar" mode="aspectFill" :src="profileStore.profile.avatar"></image>
         </navigator>
         <view class="meta">
           <view class="nickname">{{ profileStore.profile.nickname }}</view>
-          <navigator class="extra" url="/sub-packages/profile/profile" hover-class="none">
+          <navigator class="extra" url="/packages/profile/profile" hover-class="none">
             <text class="update">更新头像昵称</text>
           </navigator>
         </view>
@@ -52,7 +52,7 @@ const { guessRef, onScrollToLower } = useGuess()
           </view>
         </view>
       </view>
-      <navigator class="settings" url="/sub-packages/profile/settings" hover-class="none">
+      <navigator class="settings" url="/packages/profile/settings" hover-class="none">
         设置
       </navigator>
     </view>

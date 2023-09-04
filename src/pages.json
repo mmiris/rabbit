@@ -94,7 +94,7 @@
   },
   "subPackages": [
     {
-      "root": "sub-packages/profile",
+      "root": "packages/profile",
       "pages": [
         {
           "path": "settings",
@@ -117,7 +117,7 @@
   "preloadRule": {
     "pages/profile/profile": {
       "network": "all",
-      "packages": ["sub-packages/profile"]
+      "packages": ["packages/profile"]
     }
   }
 }
