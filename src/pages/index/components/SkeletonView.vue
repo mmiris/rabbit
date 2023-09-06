@@ -83,10 +83,12 @@
         <view class="panel HotPanel--panel hot HotPanel--hot">
           <view class="item HotPanel--item">
             <view class="title HotPanel--title">
-              <text class="title-text HotPanel--title-text sk-transparent sk-text-14-2857-710 sk-text"
+              <text
+                class="title-text HotPanel--title-text sk-transparent sk-text-14-2857-710 sk-text"
                 >特惠推荐</text
               >
-              <text class="title-desc HotPanel--title-desc sk-transparent sk-text-14-2857-48 sk-text"
+              <text
+                class="title-desc HotPanel--title-desc sk-transparent sk-text-14-2857-48 sk-text"
                 >精选全攻略</text
               >
             </view>
@@ -97,10 +99,12 @@
           </view>
           <view class="item HotPanel--item">
             <view class="title HotPanel--title">
-              <text class="title-text HotPanel--title-text sk-transparent sk-text-14-2857-942 sk-text"
+              <text
+                class="title-text HotPanel--title-text sk-transparent sk-text-14-2857-942 sk-text"
                 >爆款推荐</text
               >
-              <text class="title-desc HotPanel--title-desc sk-transparent sk-text-14-2857-503 sk-text"
+              <text
+                class="title-desc HotPanel--title-desc sk-transparent sk-text-14-2857-503 sk-text"
                 >最受欢迎</text
               >
             </view>
@@ -111,10 +115,12 @@
           </view>
           <view class="item HotPanel--item">
             <view class="title HotPanel--title">
-              <text class="title-text HotPanel--title-text sk-transparent sk-text-14-2857-15 sk-text"
+              <text
+                class="title-text HotPanel--title-text sk-transparent sk-text-14-2857-15 sk-text"
                 >一站买全</text
               >
-              <text class="title-desc HotPanel--title-desc sk-transparent sk-text-14-2857-855 sk-text"
+              <text
+                class="title-desc HotPanel--title-desc sk-transparent sk-text-14-2857-855 sk-text"
                 >精心优选</text
               >
             </view>
@@ -125,10 +131,12 @@
           </view>
           <view class="item HotPanel--item">
             <view class="title HotPanel--title">
-              <text class="title-text HotPanel--title-text sk-transparent sk-text-14-2857-470 sk-text"
+              <text
+                class="title-text HotPanel--title-text sk-transparent sk-text-14-2857-470 sk-text"
                 >新鲜好物</text
               >
-              <text class="title-desc HotPanel--title-desc sk-transparent sk-text-14-2857-451 sk-text"
+              <text
+                class="title-desc HotPanel--title-desc sk-transparent sk-text-14-2857-451 sk-text"
                 >生活加分项</text
               >
             </view>

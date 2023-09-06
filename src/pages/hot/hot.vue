@@ -26,7 +26,7 @@ const subTypes = ref<(ISubType & { isOver?: boolean })[]>([])
 const currType = hotMap.find((v) => v.type === query.type)
 
 const getHots = async () => {
-  const data = await getHotsAPI(currType.url)
+  const data = await getHotsAPI(currType!.url)
   banner.value = data.result.bannerPicture
   subTypes.value = data.result.subTypes
   console.log(subTypes.value)
@@ -39,7 +39,7 @@ const hitBottomHandler = async () => {
   currSubType.isOver = currSubType.goodsItems.page < page ? true : false
   if (currSubType.isOver) return
 
-  const data = await getHotsAPI(currType.url, {
+  const data = await getHotsAPI(currType!.url, {
     page,
     pageSize: 10,
     subType: currSubType.id

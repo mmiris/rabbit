@@ -1,9 +1,9 @@
-import { IBaseProfile } from './global'
+import { IBaseProfile } from './profile'
 
 export interface ILogin {
   code: string
-  encryptedData: string
-  iv: string
+  encryptedData?: string
+  iv?: string
 }
 
 /**

@@ -9,6 +9,7 @@ import SkeletonView from './components/SkeletonView.vue'
 import { IDetail } from '@/types/detail'
 
 import getDetailAPI from '@/services/detail'
+import { UniFormsInstance, UniPopupInstance } from '@uni-helper/uni-ui-types'
 
 const query = defineProps<{
   id: number
@@ -19,7 +20,7 @@ const { safeAreaInsets } = uni.getSystemInfoSync()
 
 const isLoading = ref<boolean>(true)
 
-const detail = ref<IDetail>(null)
+const detail = ref<IDetail>()
 
 const getDetail = async (id: number) => {
   const data = await getDetailAPI(id)
@@ -35,16 +36,18 @@ const changeHandler: UniHelper.SwiperOnChange = (e) => {
 const tapHandler = (goods: string) => {
   uni.previewImage({
     current: goods,
-    urls: detail.value?.mainPictures
+    urls: detail.value?.mainPictures || []
   })
 }
 
-const popupRef = ref<{ open: () => void; close: () => void }>()
+const popupRef = ref<UniHelper.UniPopupInstance>()
 const popupPanel = ref<'address' | 'service'>('address')
 
 const popupHandler = (panel: 'address' | 'service' = 'address') => {
   popupPanel.value = panel
-  popupRef.value.open()
+  if (popupRef.value) {
+    popupRef.value.open?.()
+  }
 }
 
 onLoad(async () => {
@@ -168,8 +171,8 @@ onLoad(async () => {
   </view>
 
   <uni-popup ref="popupRef" type="bottom">
-    <service-panel v-if="popupPanel === 'service'" @close="popupRef.close()" />
-    <address-panel v-else-if="popupPanel === 'address'" @close="popupRef.close()" />
+    <service-panel v-if="popupPanel === 'service'" @close="popupRef?.close?.()" />
+    <address-panel v-else-if="popupPanel === 'address'" @close="popupRef?.close?.()" />
   </uni-popup>
 </template>
 

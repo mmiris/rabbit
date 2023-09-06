@@ -28,25 +28,3 @@ export interface IGuessResult<T> {
    */
   pageSize: number
 }
-
-/**
- * 用户公共信息
- */
-export interface IBaseProfile {
-  /**
-   * 账号名称
-   */
-  account: string
-  /**
-   * 头像
-   */
-  avatar: string
-  /**
-   * 用户Id
-   */
-  id: string
-  /**
-   * 昵称
-   */
-  nickname: null | string
-}

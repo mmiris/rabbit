@@ -37,7 +37,7 @@ const getHots = async () => {
 
 const refreshHandler = async () => {
   isRefreshing.value = true
-  guessRef.value.resetGuesses()
+  guessRef.value?.resetGuesses()
   await Promise.all([getBanners(), getCategories(), getHots()])
   isRefreshing.value = false
 }

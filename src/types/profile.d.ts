@@ -1,4 +1,24 @@
-import { IBaseProfile } from './global'
+/**
+ * 用户公共信息
+ */
+export interface IBaseProfile {
+  /**
+   * 账号名称
+   */
+  account: string
+  /**
+   * 头像
+   */
+  avatar: string
+  /**
+   * 用户Id
+   */
+  id: string
+  /**
+   * 昵称
+   */
+  nickname: string
+}
 
 export enum EGender {
   male = '男',
@@ -12,7 +32,7 @@ export interface IProfile extends IBaseProfile {
   /**
    * 生日
    */
-  birthday: null | string
+  birthday: string
   /**
    * 省市区的名称：如山东省济南市里历下区
    */
@@ -20,11 +40,11 @@ export interface IProfile extends IBaseProfile {
   /**
    * 性别，男、女、未知
    */
-  gender: null | EGender
+  gender: EGender
   /**
    * 职业
    */
-  profession?: null | string
+  profession?: string
 }
 
 /**
@@ -34,11 +54,11 @@ export interface IPutProfile {
   /**
    * 昵称
    */
-  nickname?: null | string
+  nickname?: string
   /**
    * 生日 YYYY-MM-DD
    */
-  birthday?: null | string
+  birthday?: string
   /**
    * 性别，男、女、未知
    */
@@ -46,17 +66,17 @@ export interface IPutProfile {
   /**
    * 省份编码
    */
-  provinceCode?: null | string
+  provinceCode?: string
   /**
    * 城市编码
    */
-  cityCode?: null | string
+  cityCode?: string
   /**
    * 区/县编码
    */
-  countyCode?: null | string
+  countyCode?: string
   /**
    * 职业
    */
-  profession?: null | string
+  profession?: string
 }

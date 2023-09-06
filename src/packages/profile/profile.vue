@@ -33,7 +33,9 @@ const onAvatarChange = () => {
     async success(res) {
       try {
         const data = await uploadAvatar(res.tempFiles[0].tempFilePath)
-        profile.value.avatar = profileStore.profile.avatar = JSON.parse(data.data).result.avatar
+        if (profileStore.profile) {
+          profile.value.avatar = profileStore.profile.avatar = JSON.parse(data.data).result.avatar
+        }
       } catch (err) {
         uni.showToast({
           icon: 'error',
@@ -54,17 +56,19 @@ const onBirthdayChange: UniHelper.DatePickerOnChange = (ev) => {
 }
 
 const locationCode: Pick<IPutProfile, 'provinceCode' | 'cityCode' | 'countyCode'> = {
-  provinceCode: null,
-  cityCode: null,
-  countyCode: null
+  provinceCode: '',
+  cityCode: '',
+  countyCode: ''
 }
 
 const onLocationChange: UniHelper.RegionPickerOnChange = (ev) => {
   profile.value.fullLocation = ev.detail.value.join(' ')
 
-  let i = 0
-  for (const k in locationCode) {
-    locationCode[k] = ev.detail.code[i++]
+  if (ev.detail.code) {
+    let i = 0
+    for (const k in locationCode) {
+      locationCode[k] = ev.detail.code[i++]
+    }
   }
 }
 
@@ -72,7 +76,7 @@ const onSubmit = async () => {
   const { nickname, gender, birthday, profession } = profile.value
   const data = await putProfileAPI({ nickname, gender, birthday, profession, ...locationCode })
 
-  profileStore.profile.nickname = data.result.nickname
+  profileStore.profile!.nickname = data.result.nickname
 
   uni.showToast({
     icon: 'success',
