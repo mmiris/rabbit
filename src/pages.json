@@ -8,9 +8,8 @@
   },
   "globalStyle": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarTitleText": "小兔鲜儿",
+    "navigationBarBackgroundColor": "#F8F8F8"
   },
   "pages": [
     {
@@ -109,6 +108,26 @@
             "navigationStyle": "custom",
             "navigationBarTextStyle": "white",
             "navigationBarTitleText": "个人信息"
+          }
+        }
+      ]
+    },
+    {
+      "root": "packages/address",
+      "pages": [
+        {
+          "path": "AddressPanel",
+          "style": {
+            "navigationBarTitleText": "地址管理",
+            "app-plus": {
+              "bounce": "none"
+            }
+          }
+        },
+        {
+          "path": "AddressForm",
+          "style": {
+            "navigationBarTitleText": "添加地址"
           }
         }
       ]

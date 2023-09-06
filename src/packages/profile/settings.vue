@@ -21,8 +21,8 @@ const onLogout = () => {
 <template>
   <view class="viewport">
     <!-- 列表1 -->
-    <view class="list" v-if="true">
-      <navigator url="/subPages/address/address" hover-class="none" class="item arrow">
+    <view class="list" v-if="profileStore.profile">
+      <navigator url="/packages/address/AddressPanel" hover-class="none" class="item arrow">
         我的收货地址
       </navigator>
     </view>
