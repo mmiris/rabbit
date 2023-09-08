@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 
 import ServicePanel from './components/ServicePanel.vue'
@@ -7,9 +7,12 @@ import AddressPanel from './components/AddressPanel.vue'
 import SkeletonView from './components/SkeletonView.vue'
 
 import { IDetail } from '@/types/detail'
+import {
+  SkuPopupLocaldata,
+  SkuPopupInstance
+} from '@/components/vk-data-goods-sku-popup/vkDataGoodsSkuPopup'
 
 import getDetailAPI from '@/services/detail'
-import { UniFormsInstance, UniPopupInstance } from '@uni-helper/uni-ui-types'
 
 const query = defineProps<{
   id: number
@@ -25,6 +28,29 @@ const detail = ref<IDetail>()
 const getDetail = async (id: number) => {
   const data = await getDetailAPI(id)
   detail.value = data.result
+
+  localData.value = {
+    _id: detail.value.id,
+    name: detail.value.name,
+    goods_thumb: detail.value.mainPictures[0],
+
+    sku_list: detail.value.skus.map((v) => ({
+      _id: v.id,
+      goods_id: detail.value!.id,
+      goods_name: detail.value!.name,
+      image: v.picture,
+      price: v.price,
+      stock: v.inventory,
+      sku_name_arr: v.specs.map((v2) => v2.valueName)
+    })),
+
+    spec_list: detail.value.specs.map((v) => ({
+      name: v.name,
+      list: v.values.map((v2) => ({
+        name: v2.name
+      }))
+    }))
+  }
 }
 
 const imgIdx = ref<number>(0)
@@ -54,9 +80,34 @@ onLoad(async () => {
   await getDetail(query.id)
   isLoading.value = false
 })
+
+const skuPopupRef = ref<SkuPopupInstance>()
+const localData = ref<SkuPopupLocaldata>()
+const isShowSku = ref(false)
+const selectedSku = computed(() => {
+  return skuPopupRef.value?.selectArr?.join('').trim()
+})
+
+const onSelectGoods = () => {
+  isShowSku.value = true
+}
 </script>
 
 <template>
+  <vk-data-goods-sku-popup
+    :localdata="localData"
+    :model-value="isShowSku"
+    mask-close-able
+    add-cart-background-color="#FFA868"
+    buy-now-background-color="#27BA9B"
+    ref="skuPopupRef"
+    :actived-style="{
+      color: '#27BA9B',
+      borderColor: '#27BA9B',
+      backgroundColor: '#E9F8F5'
+    }"
+    @close="isShowSku = false"
+  />
   <skeleton-view v-if="isLoading" />
   <scroll-view scroll-y class="viewport" v-else>
     <!-- 基本信息 -->
@@ -87,9 +138,9 @@ onLoad(async () => {
 
       <!-- 操作面板 -->
       <view class="action">
-        <view class="item arrow">
+        <view class="item arrow" @tap="onSelectGoods">
           <text class="label">选择</text>
-          <text class="text ellipsis"> 请选择商品规格 </text>
+          <text class="text ellipsis"> {{ selectedSku || '请选择商品规格' }} </text>
         </view>
         <view class="item arrow" @tap="popupHandler('address')">
           <text class="label">送至</text>

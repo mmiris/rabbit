@@ -50,7 +50,7 @@ const api = <T>(options: UniApp.RequestOptions) => {
         } else {
           uni.showToast({
             icon: 'error',
-            title: (res.data as Data<T>).msg ?? 'An error occurred.'
+            title: (res.data as Data<T>).msg ?? '出现错误'
           })
           reject(res)
         }
@@ -58,7 +58,7 @@ const api = <T>(options: UniApp.RequestOptions) => {
       fail(err) {
         uni.showToast({
           icon: 'error',
-          title: 'Internet error.'
+          title: '网络错误'
         })
         reject(err)
       }

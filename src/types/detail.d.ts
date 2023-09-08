@@ -266,11 +266,11 @@ export interface ISkus {
   /**
    * sku图片
    */
-  picture?: string
+  picture: string
   /**
    * 价格
    */
-  price: string
+  price: number
   /**
    * sku编码
    */
